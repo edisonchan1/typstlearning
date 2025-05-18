@@ -5,7 +5,7 @@
   kind:"硕士",
   title-zh: [母猪产后护理],
   title-en: [pig nbn verynb],
-  authors: [吴彦祖],
+  authors: [吴彦祖.],
   teacher: [111],
   college: [生物学院],
   degree: [理学硕士],
