@@ -10,7 +10,7 @@
   college: [生物学院],
   degree: [理学硕士],
   major: [母猪 护理学],
-  field: [母猪产 后护理],
+  field: [母猪产 后护  理],
   signature: "",
   classification: [],
   year: 2025,
