@@ -19,6 +19,7 @@
   major: [],
   field: [],
   college: [],
+  secrit:[],
   signature: "",
   classification:[],
   security:[],
@@ -81,7 +82,7 @@ set document(title: title)
     ]
   ]
 
-  let titlepage = {
+  let titlepage1 = {
 
     let justify(s) = {
       if type(s) == content and s.has("text") { s = s.text }
@@ -92,25 +93,27 @@ set document(title: title)
     
     v(80pt)
   align(center, box(image(logo, fit: "stretch", width:70%)))
-  align(center)[#text(18pt, weight: 700, "(申请"+major  +"学硕士学位论文)")]
-  v(30pt)
+  align(center)[#text(18pt, weight: 70, "(申请"+major  +"学硕士学位论文)")]
+  
+  v(40pt)
     align(center)[
       #set par(leading: 14pt)
-      #text(22pt, font:("Times New Roman", "簡宋"), weight: 700, title-zh)
+      #text(30pt, font:("Times New Roman", "簡宋"), weight: "bold", title-zh)
     ]
 
-  v(80pt)
+
   let table_underline(content) = [
     #set text(15pt, baseline: 5pt)
     #content
     #v(1em)
   ]
-
-  align(center)[
-    #set text(14pt)
-    #table(
-      columns: (150pt, 34pt, 50%),
-      rows: 27.3pt,
+  v(80pt)
+  [
+ #set text(15pt,font:"kai" ,weight:"black")
+    #align(center)[
+    #grid(
+      columns: (100pt, 20pt, 50%),
+      rows: 30pt,
       align:  horizon,
       stroke: none,
       justify[培养单位], [:], table_underline[#authors],
@@ -119,52 +122,100 @@ set document(title: title)
       justify[论文作者], [:], table_underline[#degree],
       justify[指导老师], [:], table_underline[#major],
     )
+  ]]
+    v(60pt)
+    align(center, int-to-cn-simple-num(str(year))+"年"+int-to-cn-num(month)+"月")
+    pagebreak()
+  }
+
+  let titlepage2 = {
+     let justify(s) = {
+      if type(s) == content and s.has("text") { s = s.text }
+      assert(type(s) == type("string"))
+      s.clusters().join(h(1fr))
+    }
+
+    
+ 
+
+
+[   #set text(font: "Kaiti TC",weight: "black")
+    #table(
+      columns: (38pt, 1em, 50pt, 1fr,50pt, 1em, 50pt), 
+      rows:(15.6pt, 15.6pt), 
+      stroke:none,
+      inset:1pt,
+      justify[分类号], [], [#classification],table.hline(y:1,start: 2,end:3  ), [],
+      justify[密级], [], [#classification],table.hline(y:1,start: 6,end:7  ),
+      justify[UDC],   [], [#UDC],table.hline(start: 2,end:3  ), [],
+      justify[学校代码], [],[10497],table.hline(start: 6,end:7  )
+    )]
+
+
+    v(80pt)
+    align(center, box(image(logo, fit: "stretch", width:70%)))
+
+  
+    align(center)[
+      #set par(leading: 14pt)
+      #text(30pt, font:("Times New Roman", "簡宋"), weight: "bold", [学位论文]
+      )
+      
+    ]
+
+  
+  align(left)[
+    #set text(14pt)
+    #grid(
+      columns: (70pt, 34pt, 1fr),
+      rows: 27.3pt,
+      align:  center+horizon,
+      stroke: none,
+      justify[题目], [], [#title-zh],grid.hline(start: 2,end:3),
+      justify[英文题目],[], [#title-en],grid.hline(start: 2,end:3),
+      justify[论文作者], [],[#degree],grid.hline(start: 2,end:3)
+    )
+    #v(4em)
+    #grid(
+      columns: (70pt,34pt,35pt,17pt,70pt,)
+
+    )
   ]
     v(80pt)
     align(center, int-to-cn-simple-num(str(year))+"年"+int-to-cn-num(month)+"月")
     pagebreak()
+
   }
   let statementpage = {
 
     set text(font:"簡宋", 12pt)
-    text(font:"簡宋", 22pt)[#align(center)[独创性声明]]
+    text(font:"Heiti TC", 16pt,weight: "bold")[#align(center)[研究生学位论文的独创性声明]]
     
-    [本人声明所呈交的学位论文是我个人在导师指导下进行的研究工作及取得的研究成果。尽我所知，除了文中已经注明引用、已经声明生成式人工智能使用情况和致谢的内容外，论文中不包含其他人已经发表或撰写过的研究成果，不包含使用生成式人工智能直接生成的内容，也不包含本人为获得中国农业大学或其他教育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表达了谢意。]
-  
-    v(4em)
+    text(font:"簡宋", 15pt)[本人声明，所呈交的论文是本人在导师指导下进行的研究工作及取得的研究成果。尽我所知，除了文中特别加以标注和致谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得武汉理工大学或其他教育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。]
+    v(0pt)
     grid(
-      columns: (2em, auto, 1fr, auto),
+      columns: (4em, auto, 150pt, auto),
       [],
-      [学位论文作者签名:],
+      [签名:],
       [],
-      text("时间: "+str(year)+"年"+str(month)+"月"+str(day)+"日"),
+      text("日期: "+str(year)+"年"+str(month)+"月"+str(day)+"日"),
     )
     v(4em)
 
-    text(font:"簡宋", 22pt)[#align(center)[关于学位论文使用授权的说明]]
-    text(font:"簡宋", 12pt)[本人完全了解中国农业大学有关保留、使用学位论文的规定。本人同意中国农业大学有权保存及向国家有关部门和机构送交论文的纸质版和电子版，允许论文被查阅和借阅；本人同意中国农业大学将本学位论文的全部或部分内容授权汇编录入《中国博士学位论文全文数据库》或《中国优秀硕士学位论文全文数据库》进行出版，并享受相关权益。\ #h(2em)*(保密的学位论文在解密后应遵守此协议)*]
+    text(font:"Heiti TC", 16pt,weight: "bold")[#align(center)[学位论文使用授权书]]
+    text(font:"簡宋", 15pt)[本人完全了解武汉理工大学有关保留、使用学位论文的规定，即学校有权保留并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅。本人授权武汉理工大学可以将本学位论文的全部内容编入有关数据库进行检索，可以采用影印、缩印或其他复制手段保存或汇编本学位论文。同时授权经武汉理工大学认可的国家有关机构或论文数据库使用或收录本学位论文，并向社会公众提供信息服务。]
+    v(0pt)
+    text(font:"簡宋", 12pt)[(保密的论文在解密后应遵守此规定)]
 
     v(4em)
     grid(
-      columns: (2em, auto, 1fr, auto),
+      columns: (3em, auto, 40pt, auto,40pt,auto),
       [],
-      [学位论文作者签名:],
-      [],
-      text("时间: "+str(year)+"年"+str(month)+"月"+str(day)+"日"),
-    )
-    v(2em)
-    grid(
-      columns: (2em, auto, 1fr, auto),
-      [],
-      [导师签名:],
-      [],
+      [研究生 (签名):],[],[导师签名:],[],
       text("时间: "+str(year)+"年"+str(month)+"月"+str(day)+"日"),
     )
 
-    if draft{ }else{
-      place(top+left, dx: 47%, dy: 72%, rotate(-24deg, image("./CAU_Stamp.png", width: 100pt)))
-      place(top+left, dx: 47%, dy: 25%, rotate(-24deg, image("./CAU_Stamp.png", width: 100pt)))
-    }
+
     if(signature != ""){
       place(top+left, dx: 29%, dy: 25%, image("../"+signature, width: 100pt))
       place(top+left, dx: 29%, dy: 68%, image("../"+signature, width: 100pt))
@@ -172,7 +223,7 @@ set document(title: title)
 
     pagebreak()
   }
-
+  
   let abstractpage={
     set page(numbering: "I")
     counter(page).update(1)
@@ -391,7 +442,8 @@ set document(title: title)
   }
 
   [
-    #titlepage
+    #titlepage1
+    #titlepage2
     #statementpage
     #abstractpage
     #contentspage

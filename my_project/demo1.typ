@@ -5,7 +5,7 @@
   kind:"硕士",
   title-zh: [论文题目],
   title-en: [ ],
-  authors: [ 我尼玛],
+  authors: [ ],
   teacher: [ ],
   college: [],
   degree: [],
