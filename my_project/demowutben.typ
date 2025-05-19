@@ -43,7 +43,7 @@
   if(blind-review){
     authors = hide[#authors]
     teacher = hide[#teacher]
-    major = hide[major]
+    major = hide[#major]
     field = hide[#field]
     student-id = hide[#student-id]
     acknowledgement = hide[#acknowledgement]
@@ -58,7 +58,7 @@ set document(title: title)
     margin: (left: 25mm, right: 25mm, top: 30mm, bottom: 25mm),
   )
 
-  set text(font: ("Times New Roman", "SimSun"), size: 12pt, hyphenate: false)
+  set text(font: ("Times New Roman", "簡宋"), size: 12pt, hyphenate: false)
 
 
   show: show-cn-fakebold
@@ -76,7 +76,7 @@ set document(title: title)
     #block(width: 100%)[
       #set align(center)
       #v(6pt,weak: false)
-      #text(font: ("Times New Roman", "SimHei"), weight: "bold", 16pt)[#it.body]
+      #text(font: ("Times New Roman", "簡宋"), weight: "bold", 16pt)[#it.body]
       #v(6pt,weak: false)
     ]
   ]
@@ -89,48 +89,36 @@ set document(title: title)
       s.clusters().join(h(1fr))
     }
 
-    set text(12pt)
-    table(
-      columns: (38pt, 1em, 1fr, 50pt, 1em, auto), 
-      rows:(15.6pt, 15.6pt), 
-      stroke:0pt+white,
-      align: left+horizon,
-      inset:0pt,
-      justify[分类号], [:], [#classification], 
-      justify[密级],   [:], [#security], 
-      justify[UDC],   [:], [],
-      justify[学校代码] , [:] , [10497]
-    )
-
+    
     v(80pt)
-align(center, box(image(logo, fit: "stretch", width: 60%)))
-  align(center)[#text(18pt, weight: 700, "学位论文")]
-
+  align(center, box(image(logo, fit: "stretch", width:70%)))
+  align(center)[#text(18pt, weight: 700, "(申请"+major  +"学硕士学位论文)")]
+  v(30pt)
+    align(center)[
+      #set par(leading: 14pt)
+      #text(22pt, font:("Times New Roman", "簡宋"), weight: 700, title-zh)
+    ]
 
   v(80pt)
   let table_underline(content) = [
-    #set text(14pt, baseline: 5pt)
+    #set text(15pt, baseline: 5pt)
     #content
-    #v(-0.5em)
-    #line(length: 100%, stroke: 1pt)
+    #v(1em)
   ]
 
-  // 信息表格
   align(center)[
     #set text(14pt)
     #table(
-      columns: (150pt, 2pt, 40%),
+      columns: (150pt, 34pt, 50%),
       rows: 27.3pt,
-      align: center + horizon,
+      align:  horizon,
       stroke: none,
-      justify[研究生], [:], table_underline[#authors],
-      justify[指导教师],[:], table_underline[#teacher],
+      justify[培养单位], [:], table_underline[#authors],
+      justify[学科专业],[:], table_underline[#teacher],
         // justify[合作指导教师],[:],table_underline[#co-teacher],
-      justify[申请学位门类级别], [:], table_underline[#degree],
-      justify[专业名称], [:], table_underline[#major],
-      justify[研究方向], [:], table_underline[#field],
-      justify[所在学院], [:], table_underline[#college]
-      )
+      justify[论文作者], [:], table_underline[#degree],
+      justify[指导老师], [:], table_underline[#major],
+    )
   ]
     v(80pt)
     align(center, int-to-cn-simple-num(str(year))+"年"+int-to-cn-num(month)+"月")
@@ -138,8 +126,8 @@ align(center, box(image(logo, fit: "stretch", width: 60%)))
   }
   let statementpage = {
 
-    set text(font:"SimSun", 12pt)
-    text(font:"SimHei", 22pt)[#align(center)[独创性声明]]
+    set text(font:"簡宋", 12pt)
+    text(font:"簡宋", 22pt)[#align(center)[独创性声明]]
     
     [本人声明所呈交的学位论文是我个人在导师指导下进行的研究工作及取得的研究成果。尽我所知，除了文中已经注明引用、已经声明生成式人工智能使用情况和致谢的内容外，论文中不包含其他人已经发表或撰写过的研究成果，不包含使用生成式人工智能直接生成的内容，也不包含本人为获得中国农业大学或其他教育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表达了谢意。]
   
@@ -153,8 +141,8 @@ align(center, box(image(logo, fit: "stretch", width: 60%)))
     )
     v(4em)
 
-    text(font:"SimHei", 22pt)[#align(center)[关于学位论文使用授权的说明]]
-    text(font:"SimSun", 12pt)[本人完全了解中国农业大学有关保留、使用学位论文的规定。本人同意中国农业大学有权保存及向国家有关部门和机构送交论文的纸质版和电子版，允许论文被查阅和借阅；本人同意中国农业大学将本学位论文的全部或部分内容授权汇编录入《中国博士学位论文全文数据库》或《中国优秀硕士学位论文全文数据库》进行出版，并享受相关权益。\ #h(2em)*(保密的学位论文在解密后应遵守此协议)*]
+    text(font:"簡宋", 22pt)[#align(center)[关于学位论文使用授权的说明]]
+    text(font:"簡宋", 12pt)[本人完全了解中国农业大学有关保留、使用学位论文的规定。本人同意中国农业大学有权保存及向国家有关部门和机构送交论文的纸质版和电子版，允许论文被查阅和借阅；本人同意中国农业大学将本学位论文的全部或部分内容授权汇编录入《中国博士学位论文全文数据库》或《中国优秀硕士学位论文全文数据库》进行出版，并享受相关权益。\ #h(2em)*(保密的学位论文在解密后应遵守此协议)*]
 
     v(4em)
     grid(
@@ -227,11 +215,11 @@ align(center, box(image(logo, fit: "stretch", width: 60%)))
     // set par(leading: 12pt)
     heading(level: 1, numbering: none)[缩略词表]
     v(16pt,weak: false)
-    set text(font: ("Times New Roman", "SimHei"), size: 10.5pt)
+    set text(font: ("Times New Roman", "簡宋"), size: 10.5pt)
     line(length: 100%); v(-0.5em)
     grid(columns: (20%, 1fr, 30%), align(center)[缩略词], [英文全称], align(center)[中文全称])
     v(-0.5em); line(length: 100%)
-    set text(font: ("Times New Roman", "SimSun"), size: 10.5pt)
+    set text(font: ("Times New Roman", "簡宋"), size: 10.5pt)
     context {
         usedAcronyms.final()
             .pairs()
@@ -273,7 +261,7 @@ align(center, box(image(logo, fit: "stretch", width: 60%)))
       numbering: "1",
       number-align: center,
       header:[
-        #set text(9pt, font:("Times New Roman", "SimSun"))
+        #set text(9pt, font:("Times New Roman", "簡宋"))
         #text("中国农业大学"+kind+"学位论文")
         #h(1fr)
         #context {
@@ -297,13 +285,13 @@ align(center, box(image(logo, fit: "stretch", width: 60%)))
         block(width:100%, breakable: false, spacing: 0em)[
           #set align(center)
           #v(16pt,weak: false)
-          #text(font: ("Times New Roman", "SimHei"), weight: "bold", 16pt)[#it.body]
+          #text(font: ("Times New Roman", "簡宋"), weight: "bold", 16pt)[#it.body]
           #v(16pt,weak: false)
         ]
       } else if it.level == 2 {
         block(breakable: false, spacing: 0em)[
           #v(14pt, weak: false)
-          #text(font: ("Times New Roman","SimHei"), 14pt, weight: "regular")[#it]
+          #text(font: ("簡宋"), 14pt, weight: "regular")[#it]
           #v(14pt, weak: false)
         ]
       } else if it.level == 3 {
@@ -335,7 +323,7 @@ align(center, box(image(logo, fit: "stretch", width: 60%)))
     //     h(0.2em)
     //   }
     // }
-    show figure.caption: set text(font:("Times New Roman","SimHei"), 10.5pt)
+    show figure.caption: set text(font:("Times New Roman","簡宋"), 10.5pt)
     show figure.where(kind: image): set figure(
       numbering: i=> numbering("1-1", ..counter(heading.where(level: 1)).get(), i)
     )
@@ -348,13 +336,13 @@ align(center, box(image(logo, fit: "stretch", width: 60%)))
       it
     }
     show figure.where(kind: image): it => {
-      set text(font:("Times New Roman","SimSun"), 10.5pt)
+      set text(font:("Times New Roman","簡宋"), 10.5pt)
       it
       v(-4pt)
       par()[#text(size:0.0em)[#h(0em)]]
     }
     show figure.where(kind: table): it => {
-      set text(font:("Times New Roman","SimSun"), 10.5pt)
+      set text(font:("Times New Roman","簡宋"), 10.5pt)
       it
       v(-1em)
       par()[#text(size:0.0em)[#h(0em)]]
