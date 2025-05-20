@@ -153,32 +153,73 @@ set document(title: title)
 
 
 
-    align(center, box(image(logo, fit: "stretch", width:80%)))
-  
-    align(center)[
-      #set par(leading: 14pt)
-      #text(40pt, font:("Times New Roman", "簡宋"), weight: "bold", [学   位   论  文]
-      )
-      
-    ]
+    align(center, box(image(logo, fit: "stretch", width:70%)))
 
-  
-  align(left)[
-    #set text(14.9pt)
+    v(-20pt)
+    [#set text(26pt,weight: "bold")
+     #align(center)[
+      #table(
+      columns: (auto,220pt,auto),
+      stroke: none,
+      [],
+      justify[学位论文],[],
+      )
+    ]]
+
+  [
+    #set text(14pt)
     #grid(
-      columns: (70pt, 30pt, 1fr),
+      columns: (60pt, 30pt, 380pt),
       rows: 28pt,
       align:  center+horizon,
       stroke: none,
       justify[题目], [], [#title-zh],grid.hline(start: 2,end:3),
       justify[英文题目],[], [#title-en],grid.hline(start: 2,end:3),
-      justify[论文作者], [],[#degree],grid.hline(start: 2,end:3)
-    )
-    #grid(
-      columns: (70pt,30pt,35pt,17pt,60pt,30pt,17pt,60pt,17pt,20pt),
-      justify[指导教师],[],[姓名],[],[#teacher],[职务],[],[],[学校],[]
+      justify[论文作者], [],[#degree],grid.hline(start: 2,end:3),
+      justify[指导老师],
+      [#grid(
+        columns:(30pt,30pt,15pt,75pt,10pt,30pt,15pt,75pt,10pt,30pt,15pt,75pt),
+        rows:28pt,
+        stroke: none,
+        [],[姓名],[],[#teacher],grid.hline(start:3 ,end:4),[],align(right)[职称],[],[],grid.hline(start:7,end:8 ),[],[学位],[],[],grid.hline(start: 11,end:12),[],
+        align(left)[单位],[],[],grid.hline(start: 3,end:8),[],[],[],[],[],[邮编],grid.hline(start: 11,end:12)
+      )],[],
+ 
     )
   ]
+  v(18pt)
+    align(left)[
+    #set text(14pt)
+    #grid(
+      columns: (75pt,15pt,380pt),
+      rows: 28pt,
+      [副指导教师],[#grid(
+        columns:(15pt,30pt,15pt,75pt,10pt,30pt,15pt,75pt,10pt,30pt,15pt,75pt),
+        rows:28pt,
+        stroke: none,
+        [],[姓名],[],[#teacher],grid.hline(start:3 ,end:4),[],align(right)[职称],[],[],grid.hline(start:7,end:8 ),[],[学位],[],[],grid.hline(start: 11,end:12),[],
+        align(left)[单位],[],[],grid.hline(start: 3,end:8),[],[],[],[],[],[邮编],grid.hline(start: 11,end:12)
+      
+      )]
+    )
+    
+  ]
+  v(18pt)
+  align(left)[
+    #set text(14pt)
+    #grid(
+      columns: (100pt,20pt,135pt,10pt,90pt,20pt,95pt),
+      rows:28pt,
+      stroke: none,
+      [申请学位级别],[],[],grid.hline(start: 2,end:3),[],[学科专业名称],[],[],grid.hline(start: 6,end:7),
+      [论文提交日期],[],[],grid.hline(start: 2,end:3),[],[论文答辩日期],[],[],
+      [学位授予单位],[],align(center)[#text(font:"Kaiti SC","武汉理工大学",)],grid.hline(start: 2,end:3),[],[学位授予日期],[],[],
+      [答辩委员会主席],[],align(center)[#text(font:"kaiti TC","XXX教授（研究员）")],
+      [],justify[评审人],[],[],
+      [答辩委员会委员]
+    )]
+
+  
     v(80pt)
     align(center, int-to-cn-simple-num(str(year))+"年"+int-to-cn-num(month)+"月")
     pagebreak()
@@ -199,6 +240,7 @@ set document(title: title)
       text("日期:",14.9pt),
     )
     v(4em)
+
 
     text(font:"Heiti TC", 19pt,weight: "bold")[#align(center)[学位论文使用授权书]]
     text(font:"簡宋", 14.8pt)[本人完全了解武汉理工大学有关保留、使用学位论文的规定，即学校有权保留并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅。本人授权武汉理工大学可以将本学位论文的全部内容编入有关数据库进行检索，可以采用影印、缩印或其他复制手段保存或汇编本学位论文。同时授权经武汉理工大学认可的国家有关机构或论文数据库使用或收录本学位论文，并向社会公众提供信息服务。]
