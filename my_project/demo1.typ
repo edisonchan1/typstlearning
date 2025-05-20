@@ -24,7 +24,7 @@
   ],
   abstract-en:[pig huli  very nb],
   acknowledgement: [
-    本模板在编写过程中参考并学习了Typst模板的部分代码，在这里统一致谢。
+    #text([致谢对象限于在学术方面对论文的完成有较重要帮助的团体和人士（限200字）。],font: "Kaiti TC")
 
     #heading(level: 6, numbering: none, outlined: false)[]
   ],

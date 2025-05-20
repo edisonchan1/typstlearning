@@ -12,6 +12,7 @@
   abstract-zh: [],
   title-en:[],
   title-zh:[],
+  Times:[],
   authors: [],
   teacher: [],
   // co-teacher:[],
@@ -109,7 +110,7 @@ set document(title: title)
   ]
   v(80pt)
   [
- #set text(15pt,font:"kai" ,weight:"black")
+ #set text(15pt,font:"kaiti TC" ,weight:"black")
     #align(center)[
     #grid(
       columns: (100pt, 20pt, 50%),
@@ -118,7 +119,6 @@ set document(title: title)
       stroke: none,
       justify[培养单位], [:], table_underline[#authors],
       justify[学科专业],[:], table_underline[#teacher],
-        // justify[合作指导教师],[:],table_underline[#co-teacher],
       justify[论文作者], [:], table_underline[#degree],
       justify[指导老师], [:], table_underline[#major],
     )
@@ -139,9 +139,9 @@ set document(title: title)
  
 
 
-[   #set text(font: "Kaiti TC",weight: "black")
+[   #set text(font: "Kaiti TC",weight: "black",13pt)
     #table(
-      columns: (38pt, 1em, 50pt, 1fr,50pt, 1em, 50pt), 
+      columns: (45pt, 1em, 50pt, 1fr,55pt, 1em, 50pt), 
       rows:(15.6pt, 15.6pt), 
       stroke:none,
       inset:1pt,
@@ -152,33 +152,31 @@ set document(title: title)
     )]
 
 
-    v(80pt)
-    align(center, box(image(logo, fit: "stretch", width:70%)))
 
+    align(center, box(image(logo, fit: "stretch", width:80%)))
   
     align(center)[
       #set par(leading: 14pt)
-      #text(30pt, font:("Times New Roman", "簡宋"), weight: "bold", [学位论文]
+      #text(40pt, font:("Times New Roman", "簡宋"), weight: "bold", [学   位   论  文]
       )
       
     ]
 
   
   align(left)[
-    #set text(14pt)
+    #set text(14.9pt)
     #grid(
-      columns: (70pt, 34pt, 1fr),
-      rows: 27.3pt,
+      columns: (70pt, 30pt, 1fr),
+      rows: 28pt,
       align:  center+horizon,
       stroke: none,
       justify[题目], [], [#title-zh],grid.hline(start: 2,end:3),
       justify[英文题目],[], [#title-en],grid.hline(start: 2,end:3),
       justify[论文作者], [],[#degree],grid.hline(start: 2,end:3)
     )
-    #v(4em)
     #grid(
-      columns: (70pt,34pt,35pt,17pt,70pt,)
-
+      columns: (70pt,30pt,35pt,17pt,60pt,30pt,17pt,60pt,17pt,20pt),
+      justify[指导教师],[],[姓名],[],[#teacher],[职务],[],[],[学校],[]
     )
   ]
     v(80pt)
@@ -189,30 +187,30 @@ set document(title: title)
   let statementpage = {
 
     set text(font:"簡宋", 12pt)
-    text(font:"Heiti TC", 16pt,weight: "bold")[#align(center)[研究生学位论文的独创性声明]]
+    text(font:"Heiti TC", 19pt,weight: "bold")[#align(center)[研究生学位论文的独创性声明]]
     
-    text(font:"簡宋", 15pt)[本人声明，所呈交的论文是本人在导师指导下进行的研究工作及取得的研究成果。尽我所知，除了文中特别加以标注和致谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得武汉理工大学或其他教育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。]
+    text(font:"簡宋", 14.8pt,)[本人声明，所呈交的论文是本人在导师指导下进行的研究工作及取得的研究成果。尽我所知，除了文中特别加以标注和致谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得武汉理工大学或其他教育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。]
     v(0pt)
     grid(
-      columns: (4em, auto, 150pt, auto),
+      columns: (3em, auto, 150pt, auto),
       [],
-      [签名:],
+      text("签名:",14.9pt),
       [],
-      text("日期: "+str(year)+"年"+str(month)+"月"+str(day)+"日"),
+      text("日期:",14.9pt),
     )
     v(4em)
 
-    text(font:"Heiti TC", 16pt,weight: "bold")[#align(center)[学位论文使用授权书]]
-    text(font:"簡宋", 15pt)[本人完全了解武汉理工大学有关保留、使用学位论文的规定，即学校有权保留并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅。本人授权武汉理工大学可以将本学位论文的全部内容编入有关数据库进行检索，可以采用影印、缩印或其他复制手段保存或汇编本学位论文。同时授权经武汉理工大学认可的国家有关机构或论文数据库使用或收录本学位论文，并向社会公众提供信息服务。]
+    text(font:"Heiti TC", 19pt,weight: "bold")[#align(center)[学位论文使用授权书]]
+    text(font:"簡宋", 14.8pt)[本人完全了解武汉理工大学有关保留、使用学位论文的规定，即学校有权保留并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅。本人授权武汉理工大学可以将本学位论文的全部内容编入有关数据库进行检索，可以采用影印、缩印或其他复制手段保存或汇编本学位论文。同时授权经武汉理工大学认可的国家有关机构或论文数据库使用或收录本学位论文，并向社会公众提供信息服务。]
     v(0pt)
-    text(font:"簡宋", 12pt)[(保密的论文在解密后应遵守此规定)]
+    text(font:"簡宋", 14.9pt)[(保密的论文在解密后应遵守此规定)]
 
     v(4em)
     grid(
-      columns: (3em, auto, 40pt, auto,40pt,auto),
+      columns: (2em, auto, 60pt, auto,40pt,auto),
       [],
-      [研究生 (签名):],[],[导师签名:],[],
-      text("时间: "+str(year)+"年"+str(month)+"月"+str(day)+"日"),
+      text("研究生（签名):",14.9pt),[],text("导师（签名）:",14.9pt),[],
+      text("日期:"+[#Times]),
     )
 
 
@@ -313,16 +311,11 @@ set document(title: title)
       number-align: center,
       header:[
         #set text(9pt, font:("Times New Roman", "簡宋"))
-        #text("中国农业大学"+kind+"学位论文")
-        #h(1fr)
-        #context {
-            let eloc = query(selector(heading).after(here())).at(0).location()
-            query(selector(heading.where(level:1)).before(eloc)).last().body.text
-        }
-        #v(-3.8pt)
-        #line(length: 100%, stroke: 3pt)
+        #align(center)[
+        #text("武汉理工大学"+kind+"学位论文")]
+        #v(-3pt)
+        #line(length: 100%, stroke: 1pt)
         #v(-8pt)
-        #line(length: 100%, stroke: 0.5pt)
       ],
       header-ascent: 10%,
     )
