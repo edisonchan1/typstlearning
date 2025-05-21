@@ -27,6 +27,7 @@
   acknowledgement: [],
   author-introduction: [],
   appendix:[],
+  keywords:[],
   UDC:[],
   year:int,
   month:int,
@@ -78,7 +79,7 @@ set document(title: title)
     #block(width: 100%)[
       #set align(center)
       #v(6pt,weak: false)
-      #text(font: ("Times New Roman", "簡宋"), weight: "bold", 16pt)[#it.body]
+      #text(font: ("Times New Roman", "簡宋"), weight: "bold", 15pt)[#it.body]
       #v(6pt,weak: false)
     ]
   ]
@@ -91,16 +92,23 @@ set document(title: title)
       s.clusters().join(h(1fr))
     }
 
-    
+  
     v(80pt)
   align(center, box(image(logo, fit: "stretch", width:70%)))
-  align(center)[#text(18pt, weight: 70, "(申请"+major  +"学硕士学位论文)")]
+
+    v(20pt)
+  align(center)[#text(14pt, weight: 70, "(申请"+major  +"学硕士学位论文)")]
   
-  v(40pt)
-    align(center)[
-      #set par(leading: 14pt)
-      #text(30pt, font:("Times New Roman", "簡宋"), weight: "bold", title-zh)
-    ]
+  v(60pt)
+  [#set text(26pt,font:"Heiti TC",weight: "bold")
+     #align(center)[
+      #table(
+      columns: (auto,150pt,auto),
+      stroke: none,
+      [],
+      justify[#title-zh],[],
+      )
+    ]]
 
 
   let table_underline(content) = [
@@ -108,7 +116,7 @@ set document(title: title)
     #content
     #v(1em)
   ]
-  v(80pt)
+  v(60pt)
   [
  #set text(15pt,font:"kaiti TC" ,weight:"black")
     #align(center)[
@@ -142,15 +150,15 @@ set document(title: title)
 [   #set text(font: "Kaiti TC",weight: "black",13pt)
     #table(
       columns: (45pt, 1em, 50pt, 1fr,55pt, 1em, 50pt), 
-      rows:(15.6pt, 15.6pt), 
+      rows:(20pt, 15.6pt), 
       stroke:none,
       inset:1pt,
       justify[分类号], [], [#classification],table.hline(y:1,start: 2,end:3  ), [],
       justify[密级], [], [#classification],table.hline(y:1,start: 6,end:7  ),
-      justify[UDC],   [], [#UDC],table.hline(start: 2,end:3  ), [],
+      [UDC],[], [#UDC],table.hline(start: 2,end:3  ), [],
       justify[学校代码], [],[10497],table.hline(start: 6,end:7  )
     )]
-
+v(20pt)
 
 
     align(center, box(image(logo, fit: "stretch", width:70%)))
@@ -216,42 +224,57 @@ set document(title: title)
       [学位授予单位],[],align(center)[#text(font:"Kaiti SC","武汉理工大学",)],grid.hline(start: 2,end:3),[],[学位授予日期],[],[],
       [答辩委员会主席],[],align(center)[#text(font:"kaiti TC","XXX教授（研究员）")],
       [],justify[评审人],[],[],
-      [答辩委员会委员]
+      [答辩委员会委员],
     )]
 
   
-    v(80pt)
+    v(40pt)
     align(center, int-to-cn-simple-num(str(year))+"年"+int-to-cn-num(month)+"月")
     pagebreak()
 
   }
   let statementpage = {
 
-    set text(font:"簡宋", 12pt)
-    text(font:"Heiti TC", 19pt,weight: "bold")[#align(center)[研究生学位论文的独创性声明]]
+    text(font:"Heiti TC", 18pt,weight: "bold")[#align(center)[研究生学位论文的独创性声明]]
     
-    text(font:"簡宋", 14.8pt,)[本人声明，所呈交的论文是本人在导师指导下进行的研究工作及取得的研究成果。尽我所知，除了文中特别加以标注和致谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得武汉理工大学或其他教育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。]
+  [#set text(font:"簡宋",14pt)
+  #par(
+  first-line-indent: 2em,
+  leading: 14pt,
+  spacing: 0.65em,
+  justify: true,
+  [本人声明，所呈交的论文是本人在导师指导下进行的研究工作及取得的研究成果。尽我所知，除了文中特别加以标注和致谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得武汉理工大学或其他教育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。]
+)]
+  
     v(0pt)
     grid(
       columns: (3em, auto, 150pt, auto),
       [],
-      text("签名:",14.9pt),
+      text("签名:",14pt),
       [],
-      text("日期:",14.9pt),
+      text("日期:",14pt),
     )
     v(4em)
 
 
-    text(font:"Heiti TC", 19pt,weight: "bold")[#align(center)[学位论文使用授权书]]
-    text(font:"簡宋", 14.8pt)[本人完全了解武汉理工大学有关保留、使用学位论文的规定，即学校有权保留并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅。本人授权武汉理工大学可以将本学位论文的全部内容编入有关数据库进行检索，可以采用影印、缩印或其他复制手段保存或汇编本学位论文。同时授权经武汉理工大学认可的国家有关机构或论文数据库使用或收录本学位论文，并向社会公众提供信息服务。]
-    v(0pt)
-    text(font:"簡宋", 14.9pt)[(保密的论文在解密后应遵守此规定)]
+    text(font:"Heiti TC", 18pt,weight: "bold")[#align(center)[学位论文使用授权书]]
+
+
+    [#set text(font:"簡宋",14pt)
+  #par(
+  first-line-indent: 2em,
+  leading: 14pt,
+  spacing: 0.65em,
+  justify: true,
+  [本人完全了解武汉理工大学有关保留、使用学位论文的规定，即学校有权保留并向国家有关部门或机构送交论文的复印件和电子版，允许论文被查阅和借阅。本人授权武汉理工大学可以将本学位论文的全部内容编入有关数据库进行检索，可以采用影印、缩印或其他复制手段保存或汇编本学位论文。同时授权经武汉理工大学认可的国家有关机构或论文数据库使用或收录本学位论文，并向社会公众提供信息服务。]
+)]
+    text(font:"簡宋", 14pt)[(保密的论文在解密后应遵守此规定)]
 
     v(4em)
     grid(
       columns: (2em, auto, 60pt, auto,40pt,auto),
       [],
-      text("研究生（签名):",14.9pt),[],text("导师（签名）:",14.9pt),[],
+      text("研究生（签名):",14pt),[],text("导师（签名）:",14pt),[],
       text("日期:"+[#Times]),
     )
 
@@ -271,63 +294,38 @@ set document(title: title)
     align(center)[
       #heading(outlined: true, level: 1, numbering:none, [摘要])]
       v(16pt,weak: false)
-      set par(justify: true)
+      set text(12pt)
+      set par(justify: true,
+      leading: 8pt)
       [#h(2em) #abstract-zh]
+
+      v(-2pt)
+      [#set text(12pt,weight: "bold",)
+      #set par(justify: true,first-line-indent:0em,)
+      关键词:#keywords
+      ]
   
     align(center)[
       #heading(outlined: abstract-en-outlined, level: 1, numbering: none, [Abstract])]
       v(16pt,weak: false)
       set par(justify: true)
       [#abstract-en]
+      [#set text(12pt,weight: "bold",)
+      #set par(justify: true,first-line-indent:0em)
+      Key Words：#keywords]
   }
+  
 
   let contentspage={
     set page(numbering: "I")
     show outline: set heading(level: 1, outlined: true)
-    heading(level: 1, numbering: none)[目录]
+    heading(level: 1, numbering: none,outlined: false)[目录]
     v(16pt,weak: false)
-    outline(depth: outline-depth, indent: n => 2em * n, title: none)
+    outline(depth: 3, indent: n => 2em * n, title: none,)
   }
 
-  let illustrationspage={
-    // set text(font: sunfont, size: 12pt)
-    set page(numbering: "I")
-    // set par(leading: 12pt)
-    heading(level: 1, numbering: none)[插图和附表清单]
-    v(16pt,weak: false)
-    outline(title:none, target: figure.where(kind:image))
-    set par(first-line-indent: 0em)
-    outline(title:none, target: figure.where(kind:table))
-  }
 
-  let acronymspage={    
-    // set text(font: sunfont, size: 12pt)
-    set page(numbering: "I")
-    // set par(leading: 12pt)
-    heading(level: 1, numbering: none)[缩略词表]
-    v(16pt,weak: false)
-    set text(font: ("Times New Roman", "簡宋"), size: 10.5pt)
-    line(length: 100%); v(-0.5em)
-    grid(columns: (20%, 1fr, 30%), align(center)[缩略词], [英文全称], align(center)[中文全称])
-    v(-0.5em); line(length: 100%)
-    set text(font: ("Times New Roman", "簡宋"), size: 10.5pt)
-    context {
-        usedAcronyms.final()
-            .pairs()
-            .filter(x => x.last())
-            .map(pair => pair.first())
-            .sorted()
-            .map(key => grid(
-                columns: (20%, 1fr, 30%),
-                align(center)[#eval(acronyms.at(key).at(0), mode: "markup")], 
-                eval(acronyms.at(key).at(1), mode: "markup"), 
-                align(center)[#eval(acronyms.at(key).at(2), mode: "markup")],
-                )
-            )
-            .join()
-    }
-    line(length: 100%)
-  }
+
 
   let acknowledgementpage = [
     = 致谢
@@ -335,7 +333,7 @@ set document(title: title)
   ]
 
   let authorpage = [
-    = 个人简介
+    = 科研成果目录
     #author-introduction
   ]
 
@@ -370,9 +368,9 @@ set document(title: title)
         }
         block(width:100%, breakable: false, spacing: 0em)[
           #set align(center)
-          #v(16pt,weak: false)
+          #v(15pt,weak: false)
           #text(font: ("Times New Roman", "簡宋"), weight: "bold", 16pt)[#it.body]
-          #v(16pt,weak: false)
+          #v(15pt,weak: false)
         ]
       } else if it.level == 2 {
         block(breakable: false, spacing: 0em)[
@@ -482,8 +480,6 @@ set document(title: title)
     #statementpage
     #abstractpage
     #contentspage
-    #illustrationspage
-    #acronymspage
     #show: body => bodyconf()
   ]
 

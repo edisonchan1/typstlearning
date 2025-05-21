@@ -18,11 +18,9 @@
   day: 21,
   outline-depth: 3,
   security: [公开],
-  abstract-zh: [母猪产后护理非常牛逼
-
-  *关键词*： 母猪, 产后
+  abstract-zh: [论文第一页为中文摘要，800～1000字，小四号宋体字，行间距为固定值20磅。内容应包括工作目的、研究方法、成果和结论等。要突出本论文的新见解，语言力求精炼。为了便于文献检索，应在摘要下方另起一行注明论文的关键词。
   ],
-  abstract-en:[pig huli  very nb],
+  abstract-en:[与中文摘要同，Times new roman字体，小四号字体，行间距为固定值20磅。],
   acknowledgement: [
     #text([致谢对象限于在学术方面对论文的完成有较重要帮助的团体和人士（限200字）。],font: "Kaiti TC")
 
