@@ -111,11 +111,7 @@ set document(title: title)
     ]]
 
 
-  let table_underline(content) = [
-    #set text(15pt, baseline: 5pt)
-    #content
-    #v(1em)
-  ]
+
   v(60pt)
   [
  #set text(15pt,font:"kaiti TC" ,weight:"black")
@@ -125,10 +121,10 @@ set document(title: title)
       rows: 30pt,
       align:  horizon,
       stroke: none,
-      justify[培养单位], [:], table_underline[#authors],
-      justify[学科专业],[:], table_underline[#teacher],
-      justify[论文作者], [:], table_underline[#degree],
-      justify[指导老师], [:], table_underline[#major],
+      justify[培养单位], [:], [#authors],
+      justify[学科专业],[:], [#teacher],
+      justify[论文作者], [:], [#degree],
+      justify[指导老师], [:], [#major],
     )
   ]]
     v(60pt)
@@ -149,14 +145,14 @@ set document(title: title)
 
 [   #set text(font: "Kaiti TC",weight: "black",13pt)
     #table(
-      columns: (45pt, 1em, 50pt, 1fr,55pt, 1em, 50pt), 
+      columns: (30pt,45pt, 90pt, 70pt,55pt, 90pt,auto), 
       rows:(20pt, 15.6pt), 
       stroke:none,
-      inset:1pt,
-      justify[分类号], [], [#classification],table.hline(y:1,start: 2,end:3  ), [],
-      justify[密级], [], [#classification],table.hline(y:1,start: 6,end:7  ),
-      [UDC],[], [#UDC],table.hline(start: 2,end:3  ), [],
-      justify[学校代码], [],[10497],table.hline(start: 6,end:7  )
+      inset:1pt,[],
+      justify[分类号],  align(center)[#table.cell([10497]+place(dy:1pt,line(stroke: 0.5pt,length: 100%)))], [],
+      justify[密级], align(center)[#table.cell([10497]+place(dy:1pt,line(stroke: 0.5pt,length: 100%)))],[],[],
+      [UDC],align(center)[#table.cell([#UDC]+place(dy:1pt,line(stroke: 1pt,length: 100%)))], [],
+      justify[学校代码], align(center)[#table.cell([10497]+place(dy:1pt,line(stroke: 1pt,length: 100%)))],[]
     )]
 v(20pt)
 
@@ -189,8 +185,8 @@ v(20pt)
         columns:(30pt,30pt,15pt,75pt,10pt,30pt,15pt,75pt,10pt,30pt,15pt,75pt),
         rows:28pt,
         stroke: none,
-        [],[姓名],[],[#teacher],grid.hline(start:3 ,end:4),[],align(right)[职称],[],[],grid.hline(start:7,end:8 ),[],[学位],[],[],grid.hline(start: 11,end:12),[],
-        align(left)[单位],[],[],grid.hline(start: 3,end:8),[],[],[],[],[],[邮编],grid.hline(start: 11,end:12)
+        [],[姓名],[],[#teacher],grid.hline(start:3 ,end:4),[],align(right)[职称],[],[],grid.hline(y:1,start:7,end:8 ),[],[学位],[],[],grid.hline(start: 11,end:12),[],
+        align(left)[单位],[],[],grid.hline(y:2,start: 3,end:8),[],[],[],[],[],[邮编],grid.hline(start: 11,end:12)
       )],[],
  
     )
@@ -220,12 +216,18 @@ v(20pt)
       rows:28pt,
       stroke: none,
       [申请学位级别],[],[],grid.hline(start: 2,end:3),[],[学科专业名称],[],[],grid.hline(start: 6,end:7),
-      [论文提交日期],[],[],grid.hline(start: 2,end:3),[],[论文答辩日期],[],[],
-      [学位授予单位],[],align(center)[#text(font:"Kaiti SC","武汉理工大学",)],grid.hline(start: 2,end:3),[],[学位授予日期],[],[],
-      [答辩委员会主席],[],align(center)[#text(font:"kaiti TC","XXX教授（研究员）")],
-      [],justify[评审人],[],[],
-      [答辩委员会委员],
+      [论文提交日期],[],[],grid.hline(start: 2,end:3),[],[论文答辩日期],grid.hline(start: 6,end:8),[],[],
+      [学位授予单位],[],align(center)[#text(font:"Kaiti SC","武汉理工大学",)],grid.hline(start: 2,end:3),[],[学位授予日期],grid.hline(start: 6,end:8),[],[],
+      [答辩委员会主席],grid.hline(start: 2,end:3),[],align(center)[#text(font:"kaiti TC","XXX教授（研究员）")],
+      [],justify[评审人],grid.hline(start: 6,end:9),[],[],
     )]
+ v(-10pt)
+  align(left)[
+    #set text(14pt)
+    #grid(
+      columns: (100pt,20pt,300pt),
+      rows :28pt,
+      [答辩委员会委员],[],align(center)[#text(font:"Kaiti SC",[×××教授（研究员）、×××教授])],[],[],align(center)[#text(font:"Kaiti SC",[×××教授、×××教授（副研究员）])])]
 
   
     v(40pt)
@@ -342,6 +344,7 @@ v(20pt)
     #appendix
     #heading(level: 6, numbering: none, outlined: false)[]
   ]
+  
 
 
   let bodyconf() = {
@@ -368,24 +371,32 @@ v(20pt)
         }
         block(width:100%, breakable: false, spacing: 0em)[
           #set align(center)
-          #v(15pt,weak: false)
-          #text(font: ("Times New Roman", "簡宋"), weight: "bold", 16pt)[#it.body]
-          #v(15pt,weak: false)
+          #v(28.346pt,weak: false)
+          #text(font: ("Times New Roman", "簡宋"), weight: "bold", 18pt)[#it.body]
+          #v(34pt,weak: false)
         ]
       } else if it.level == 2 {
         block(breakable: false, spacing: 0em)[
           #v(14pt, weak: false)
-          #text(font: ("簡宋"), 14pt, weight: "regular")[#it]
-          #v(14pt, weak: false)
+          #text(font: ("Heiti TC"), 16pt, weight: "bold")[#it]
+          #v(18pt, weak: false)
         ]
       } else if it.level == 3 {
         block(breakable: false, spacing: 0em)[
-          #v(24pt, weak: false)
-          #text(font: ("Times New Roman","SimHei"), 12pt, weight: "regular")[#it]
+          #v(12pt, weak: false)
+          #text(font: ("heiti TC"), 14pt, weight: "bold")[#it]
           #v(12pt, weak: false)
         ]
       }
-      par()[#text(size:0.0em)[#h(0em)]]
+       else if it.level == 4 {
+        block(breakable: false, spacing: 0em)[
+          #v(9pt, weak: false)
+          #text(font: ("heiti TC"), 12pt, weight: "bold")[#it]
+          #v(6pt, weak: false)
+        ]
+      }
+      par(leading: 2pt)[#text(size:0.0em)[#h(0em)]]
+      v(2pt)
     }
 
     let frame(stroke) = (x, y) => (
@@ -468,8 +479,9 @@ v(20pt)
     [
       #body
       #acknowledgementpage
-      #appendixpage
       #authorpage
+      #appendixpage
+
     ]
     // disable-codly()
   }
@@ -482,21 +494,5 @@ v(20pt)
     #contentspage
     #show: body => bodyconf()
   ]
-
-}
-
-#let l(it) = align(left)[#it]
-#let u(it) = underline(offset: 5pt)[#it]
-#let legend(it) = block(breakable: false, above: 8pt, inset:(x:2em))[
-  #set text(size: 9pt)
-  #set par(first-line-indent: 2em, leading:1em)
-  #align(left)[#it]
-  #par()[#text(size:0.0em)[#h(0em)]]
-]
-#let loadcsv(csvFilePath, columns:(), ..args) = table(
-    columns: columns,
-    ..csv("../template/csvdata.csv").flatten(),
-  )
-
 
 }
