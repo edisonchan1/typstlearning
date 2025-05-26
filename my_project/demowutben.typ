@@ -58,7 +58,7 @@
 set document(title: title)
   set page(
     paper: "a4",
-    margin: (left: 25mm, right: 25mm, top: 30mm, bottom: 25mm),
+    margin: (left: 31.5mm, right: 31.5mm, top: 30mm, bottom: 25mm),
   )
 
   set text(font: ("Times New Roman", "簡宋"), size: 12pt, hyphenate: false)
@@ -239,13 +239,13 @@ v(20pt)
 
     text(font:"Heiti TC", 18pt,weight: "bold")[#align(center)[研究生学位论文的独创性声明]]
     
-  [#set text(font:"簡宋",14pt)
+  [
   #par(
   first-line-indent: 2em,
   leading: 14pt,
   spacing: 0.65em,
   justify: true,
-  [本人声明，所呈交的论文是本人在导师指导下进行的研究工作及取得的研究成果。尽我所知，除了文中特别加以标注和致谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得武汉理工大学或其他教育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。]
+  [#text([本人声明，所呈交的论文是本人在导师指导下进行的研究工作及取得的研究成果。尽我所知，除了文中特别加以标注和致谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得武汉理工大学或其他教育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。],14pt)]
 )]
   
     v(0pt)
@@ -296,23 +296,28 @@ v(20pt)
     align(center)[
       #heading(outlined: true, level: 1, numbering:none, [摘要])]
       v(16pt,weak: false)
-      set text(12pt)
-      set par(justify: true,
+      
+      [#set text(12.5pt)
+      #set par(justify: true,
       leading: 8pt)
-      [#h(2em) #abstract-zh]
+      #h(2em) #abstract-zh]
 
       v(-2pt)
-      [#set text(12pt,weight: "bold",)
-      #set par(justify: true,first-line-indent:0em,)
+      [#set text(12.5pt,weight: "bold",)
+      #set par(justify: true,first-line-indent: 0em)
       关键词:#keywords
       ]
   
     align(center)[
       #heading(outlined: abstract-en-outlined, level: 1, numbering: none, [Abstract])]
       v(16pt,weak: false)
-      set par(justify: true)
-      [#abstract-en]
-      [#set text(12pt,weight: "bold",)
+
+
+      [#set par(justify: true)
+      #set text(12.5pt)
+      #h(2em)
+      #abstract-en]
+      [#set text(12.5pt,weight: "bold",)
       #set par(justify: true,first-line-indent:0em)
       Key Words：#keywords]
   }

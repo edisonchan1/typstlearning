@@ -4,9 +4,9 @@
 #show:project.with(
   kind:"硕士",
   title-zh: [论文题目],
-  title-en: [ ],
-  authors: [ ],
-  teacher: [ ],
+  title-en: [],
+  authors: [],
+  teacher: [],
   college: [],
   degree: [],
   major: [],
